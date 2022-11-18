@@ -20,5 +20,12 @@ public class PlayerMovement : MonoBehaviour
             body.AddForce(0f, speed, 0f, ForceMode.Impulse);
         } 
     }
-    
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent(out Obstacle obstacle))
+        {
+            Debug.Log("Game Over..!");
+        }
+    }
 }
