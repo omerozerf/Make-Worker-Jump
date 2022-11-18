@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && transform.position.y < 0.15f)
         { 
             body.AddForce(0f, speed, 0f, ForceMode.Impulse);
         } 
