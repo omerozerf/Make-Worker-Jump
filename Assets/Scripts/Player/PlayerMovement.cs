@@ -7,6 +7,13 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private Rigidbody body;
     [SerializeField] private float speed;
+    public PlayerAnimator animator;
+    public GameManager gameManager;
+
+    private void Start()
+    {
+        animator.Run();
+    }
 
     private void Update()
     {
@@ -15,9 +22,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && transform.position.y < 0.15f)
+        if (Input.GetKeyDown(KeyCode.Space) && transform.position.y < 0.15f && !gameManager.isGameOver)
         { 
             body.AddForce(0f, speed, 0f, ForceMode.Impulse);
+            animator.Jump();
         } 
     }
 
@@ -25,7 +33,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.TryGetComponent(out Obstacle obstacle))
         {
-            Debug.Log("Game Over..!");
+            gameManager.isGameOver = true;
+            animator.Die();
         }
     }
 }

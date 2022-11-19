@@ -8,10 +8,19 @@ public class ObstaclesSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject[] obstacles;
     [SerializeField] private float spawnRatePerSecond;
+    public GameManager gameManager;
 
     private void Start()
     {
         StartCoroutine(SpawnRoutine());
+    }
+
+    private void Update()
+    {
+        if (gameManager.isGameOver)
+        {
+            StopAllCoroutines();
+        }
     }
 
     private IEnumerator SpawnRoutine()

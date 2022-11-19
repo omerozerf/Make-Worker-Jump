@@ -5,6 +5,7 @@ public class BackgroundMovement : MonoBehaviour
 
     [SerializeField] private float speed;
     [SerializeField] private Transform[] transforms;
+    public GameManager gameManager;
     
 
     private void Update()
@@ -15,6 +16,11 @@ public class BackgroundMovement : MonoBehaviour
 
     private void XMovement()
     {
+        if (gameManager.isGameOver)
+        {
+            return;
+        }
+        
         foreach (var subTransform in transforms)
         {
             var deltaPosition = Vector3.left * speed * Time.deltaTime;

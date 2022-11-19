@@ -6,6 +6,15 @@ using UnityEngine;
 public class Obstacle : MonoBehaviour
 {
     [SerializeField] private float speed;
+    
+    
+    
+    private GameManager gameManager;
+
+    private void Awake()
+    {
+        gameManager = FindObjectOfType<GameManager>();
+    }
 
     private void Update()
     {
@@ -15,6 +24,10 @@ public class Obstacle : MonoBehaviour
 
     private void Movement()
     {
+        if (gameManager.isGameOver)
+        {
+            return;
+        }
         transform.Translate(Vector3.left * speed * Time.deltaTime);
     }
 
