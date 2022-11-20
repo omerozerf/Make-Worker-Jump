@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && transform.position.y < 0.15f && !gameManager.isGameOver)
         { 
-            body.AddForce(0f, speed, 0f, ForceMode.Impulse);
+            body.AddForce(0f, speed, 0f, ForceMode.Impulse); //to jump
             animator.Jump();
         } 
     }
